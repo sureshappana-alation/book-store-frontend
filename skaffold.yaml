@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta16
+kind: Config
+metadata:
+  name: book-store-frontend
+build:
+  artifacts:
+    - image: docker.io/sureshappana/book-store-frontend
+deploy:
+  helm:
+    releases:
+      - name: book-store-frontend
+        chartPath: charts/book-store-frontend
+        artifactOverrides:
+          imageName: docker.io/sureshappana/book-store-frontend
+        valuesFiles:
+          - ./charts/book-store-frontend/values.yaml
